@@ -110,6 +110,7 @@ public class MainWindow extends JFrame {
         editMenu = new JMenu(WhatToCook.SelectedPackage.get(2));
         helpMenu = new JMenu(WhatToCook.SelectedPackage.get(5));
         viewMenu = new JMenu(WhatToCook.SelectedPackage.get(83));
+        toolsMenu = new JMenu(WhatToCook.SelectedPackage.get(106));
         newSubmenu = new JMenu(WhatToCook.SelectedPackage.get(45));
         cardsSubmenu = new JMenu(WhatToCook.SelectedPackage.get(84));
 
@@ -117,6 +118,7 @@ public class MainWindow extends JFrame {
         mainMenu.add(editMenu);
         mainMenu.add(viewMenu);
         mainMenu.add(helpMenu);
+        mainMenu.add(toolsMenu);
         fileMenu.add(newSubmenu);
         viewMenu.add(cardsSubmenu);
         showSearchMenu = new JCheckBoxMenuItem(WhatToCook.SelectedPackage.get(8));
@@ -222,6 +224,19 @@ public class MainWindow extends JFrame {
             newIngredientTextField.requestFocus();
         });
         newIngredientAction.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+
+        JMenuItem newShoppingListAction = new JMenuItem(WhatToCook.SelectedPackage.get(105));
+        newShoppingListAction.addActionListener(e -> {
+        if (!isShoppingTurnOn) {
+
+            isShoppingTurnOn = true;
+            showShoppingListMenu();
+        } else {
+            showMessageDialog(new JFrame(), WhatToCook.SelectedPackage.get(107), WhatToCook.SelectedPackage.get(107), JOptionPane.ERROR_MESSAGE);
+        }
+        });
+        //newShoppingLisAction.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+
         JMenuItem newRecipeAction = new JMenuItem(WhatToCook.SelectedPackage.get(47));
         newRecipeAction.addActionListener(e -> {
             if (!isEditionTurnOn) {
@@ -302,6 +317,8 @@ public class MainWindow extends JFrame {
         editMenu.addSeparator();
         editMenu.add(settingsAction);
         helpMenu.add(aboutAction);
+
+        toolsMenu.add(newShoppingListAction);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //KARTA WYSZUKIWANIA////////////////////////////////////////////////////////////////////////////////////////////
         ingredientsDownGridLayout = new JPanel(new GridLayout(1, 2));
@@ -1468,6 +1485,26 @@ public class MainWindow extends JFrame {
         return spareIngredientsCheckBox.isSelected();
     }
 
+    //LISTA ZAKUPÓW
+    private void showShoppingListMenu () {
+        manageShoppingListMainPanel = new JPanel(new BorderLayout());
+        manageShoppingListGridPanel = new JPanel(new GridLayout(1, 2));
+        manageShoppingListLeftBorderLayout = new JPanel(new BorderLayout());
+        manageShoppingListLeftUpGridPanel = new JPanel(new GridLayout(2, 1));
+        manageShoppingListLeftDownGridPanel = new JPanel(new GridLayout(1, 3));
+        searchingOptions2BorderLayout = new JPanel(new BorderLayout());
+
+        /*
+        recipesBorderLayout = new JPanel(new BorderLayout());
+        recipeTextArea = new JTextArea();
+        recipeTextArea.setFont(new Font("monospaced", Font.PLAIN, 12));
+        recipeTextArea.setEditable(false);
+        recipeTextArea.setLineWrap(true);
+        */
+        isShoppingTurnOn = false;
+    }
+
+
     //ELEMENTY GUI BAZY SKŁADNIKÓW
     private JTabbedPaneCloseButton mainTable;
     private JTabbedPane creatingRecipeTable;
@@ -1477,9 +1514,11 @@ public class MainWindow extends JFrame {
     private JScrollPane recipesListScrollPane;
     private JScrollPane ingredientsInputinRecipeListScrollPane;
     private JScrollPane manageIngredientsListScrollPane;
+    private JScrollPane manageShoppingListScrollPane;
     private JScrollPane recipeTextAreaScrollPane;
     private JScrollPane instructionAreaJScrollPane;
     private JScrollPane spareIngredientsListScrollPane;
+    private JScrollPane shoppingListScrollPane;
 
     private JCheckBox breakfestCheckBox;
     private JCheckBox dessertCheckBox;
@@ -1535,11 +1574,20 @@ public class MainWindow extends JFrame {
     private JPanel manageRecipesLeftBorderLayout;
     private JPanel manageRecipesLeftUpGridPanel;
     private JPanel manageRecipesLeftDownGridPanel;
+
+    private JPanel manageShoppingListLeftBorderLayout;
+    private JPanel manageShoppingListMainPanel;
+    private JPanel manageShoppingListGridPanel;
+    private JPanel manageShoppingListBorderLayout;
+    private JPanel manageShoppingListLeftUpGridPanel;
+    private JPanel manageShoppingListLeftDownGridPanel;
+
     private JPanel mainBorderLayout;
     private JPanel downBorderLayout;
     private JPanel upBorderLayout;
     private JPanel importExportInSearchGrid;
     private JPanel searchingOptionsBorderLayout;
+    private JPanel searchingOptions2BorderLayout;
 
     private JPanel spareIngredientsMainBorderLayout;
     private JPanel spareIngredientsUpBorderLayout;
@@ -1567,6 +1615,7 @@ public class MainWindow extends JFrame {
     private JMenu newSubmenu;
     private JMenu cardsSubmenu;
     private JMenu viewMenu;
+    private JMenu toolsMenu;
 
     private JCheckBoxMenuItem showSearchMenu;
     private JCheckBoxMenuItem showRecipesMenu;
@@ -1602,6 +1651,7 @@ public class MainWindow extends JFrame {
     public static boolean searchInEveryWord;
     public static boolean searchCaseSensitive;
     private boolean isEditionTurnOn;
+    private boolean isShoppingTurnOn;
 
     int mainCardsCount;
 
