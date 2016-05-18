@@ -913,6 +913,18 @@ public class MainWindow extends JFrame {
     //FUNCKJA OTWIERA NOWĄ KARTĘ Z KONKRETNYM PRZEPISEM
     private void showRecipe(Recipe recipeToShow) {
         recipesBorderLayout = new JPanel(new BorderLayout());
+
+        // Wyświetlanie z przepisami powiązanymi
+        JPanel recipesAndLinked = new JPanel();
+        recipesAndLinked.setLayout(new GridLayout(1, 2));
+        recipesBorderLayout.add(recipesAndLinked, BorderLayout.NORTH);
+        JLabel title = new JLabel("Przepis i powiązane:");
+        recipesAndLinked.add(title);
+        JComboBox<String> recipeAndLinkedBox = new JComboBox<String>(recipeToShow.getLinkedRecipes().toArray(new String[0]));
+        recipeAndLinkedBox.addItem(recipeToShow.getName());
+        recipesAndLinked.add(recipeAndLinkedBox);
+        // Koniec
+
         recipeTextArea = new JTextArea();
         recipeTextArea.setFont(new Font("monospaced", Font.PLAIN, 12));
         recipeTextArea.setEditable(false);

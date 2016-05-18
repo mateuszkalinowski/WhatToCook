@@ -51,7 +51,7 @@ public class LinkedRecipesUI {
 
         //Dodanie przestrzeni na przepisy powiązane
         linkedRecipesArea = new JPanel();
-        linkedRecipesArea.setLayout(new GridLayout(20, 1));
+        linkedRecipesArea.setLayout(new GridLayout(15, 1));
 
         linkedRecipesPanel.add(linkedRecipesArea, BorderLayout.CENTER);
     }
