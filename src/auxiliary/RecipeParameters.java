@@ -3,7 +3,7 @@ package auxiliary;
  * Created by WTC-Team on 25.04.2016.
  * Project WhatToCook
  */
-//PRZECHOWUJE DODATKOWE TAG'I PRZEPISOW
+//PRZECHOWUJE DODATKOWE TAG'I PRZEPISÓW
 //Łączy się z Recipe
 public class RecipeParameters {
 

@@ -15,7 +15,7 @@ import static core.LinkedRecipes.readLinkedRecipes;
  * Project WhatToCook
  */
 /*
-    KLASA "STATYCZNA", PONIEKĄD ABSKTRAKCYJNA, SLUŻY DO OBSŁUGI LISTY PRZEPISÓW, NIE TWORZY OBIEKTÓW
+    KLASA "STATYCZNA", PONIEKĄD ABSTRAKCYJNA, SŁUŻY DO OBSŁUGI LISTY PRZEPISÓW, NIE TWORZY OBIEKTÓW
     BO POTRZEBNA JEST TYLKO JEDNA TAKA LISTA
  */
 public class RecipesList
@@ -33,9 +33,9 @@ public class RecipesList
             while (i < listOfFiles.length) {
                 String name;
                 ArrayList<Ingredient> ingredients = new ArrayList<> ();
-                ArrayList<PairAmountUnit> ammountsAndUnits = new ArrayList<> ();
+                ArrayList<PairAmountUnit> amountsAndUnits = new ArrayList<> ();
                 boolean parameters[] = new boolean[5];
-                int ingredientsAmmount;
+                int ingredientsAmount;
                 String instructions = "";
 
                 try {
@@ -49,9 +49,9 @@ public class RecipesList
                     for (int j = 0; j < 5; j++) {
                         parameters[j] = dividedParameters[j].equals ("true");
                     }
-                    ingredientsAmmount = in.nextInt ();
+                    ingredientsAmount = in.nextInt ();
                     in.nextLine ();
-                    for (int j = 0; j < ingredientsAmmount; j++) {
+                    for (int j = 0; j < ingredientsAmount; j++) {
                         String nextName = in.nextLine ();
                         String IngredientName = "";
                         String[] ingredient;
@@ -64,21 +64,21 @@ public class RecipesList
                         Ingredient newIngredient = new Ingredient (IngredientName);
                         ingredients.add (newIngredient);
 
-                        String ammount = "";
+                        String amount = "";
                         String unit = "";
                         if (ingredient[ingredient.length - 2].equals ("true"))
-                            ammount = in.nextLine ();
+                            amount = in.nextLine ();
                         if (ingredient[ingredient.length - 1].equals ("true"))
                             unit = in.nextLine ();
 
-                        ammountsAndUnits.add (new PairAmountUnit (ammount, unit));
+                        amountsAndUnits.add (new PairAmountUnit (amount, unit));
 
 
                     }
                     while (in.hasNextLine ()) {
                         instructions += in.nextLine ();
                     }
-                    recipesList.add (new Recipe (name, ingredients, ammountsAndUnits, instructions, new RecipeParameters (parameters, preparingEase, preparingTime)));
+                    recipesList.add (new Recipe (name, ingredients, amountsAndUnits, instructions, new RecipeParameters (parameters, preparingEase, preparingTime)));
                     Collections.sort (recipesList);
                     in.close ();
                 } catch (FileNotFoundException e) {
@@ -186,13 +186,13 @@ public class RecipesList
     {
         return recipesList.get(i).getName();
     }
-    static public boolean checkWithIngredientsList(ArrayList<Ingredient> aviableIngredients,int index,boolean parameters[],int ease,int time)
+    static public boolean checkWithIngredientsList(ArrayList<Ingredient> availableIngredients,int index,boolean parameters[],int ease,int time)
     {
         if(!WhatToCook.frame.getSpareIngredientsCheckButtonValue()) {
             boolean contains;
             for (int i = 0; i < recipesList.get(index).getSize(); i++) {
                 contains = false;
-                for (Ingredient aviableIngredient : aviableIngredients)
+                for (Ingredient aviableIngredient : availableIngredients)
                     if (recipesList.get(index).getIngredient(i).equals(aviableIngredient))
                         contains = true;
                 if (!contains)
@@ -211,10 +211,10 @@ public class RecipesList
             boolean contains;
             for (int i = 0; i < recipesList.get(index).getSize(); i++) {
                 contains = false;
-                for (Ingredient aviableIngredient : aviableIngredients)
-                    if (recipesList.get(index).getIngredient(i).equals(aviableIngredient))
+                for (Ingredient availableIngredient : availableIngredients)
+                    if (recipesList.get(index).getIngredient(i).equals(availableIngredient))
                         contains = true;
-                for (Ingredient aviableIngredient : aviableIngredients)
+                for (Ingredient aviableIngredient : availableIngredients)
                     if(SpareIngredientsList.containSpareIngredient(aviableIngredient,recipesList.get(index).getIngredient(i)))
                         contains = true;
                 if (!contains)

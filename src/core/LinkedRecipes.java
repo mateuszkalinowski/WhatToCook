@@ -35,11 +35,11 @@ public class LinkedRecipes {
                 temp_recipe.setLinkedRecipes(temp_list);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Linkings file not found");
+            System.out.println("Links file not found");
         }
     }
 
-    public static void addLinking(int recipe1index, int recipe2index) {
+    public static void addLink( int recipe1index, int recipe2index) {
         if (recipe1index >= 0) {
             Recipe recipe1 = recipesList.get(recipe1index);
             Recipe recipe2 = recipesList.get(recipe2index);
@@ -48,12 +48,12 @@ public class LinkedRecipes {
                 recipe1.getLinkedRecipes().add(recipe2.getName());
                 recipe2.getLinkedRecipes().add(recipe1.getName());
             }
-            saveLinkings();
+            saveLinks();
         }
     }
 
-    //Drugi arg jest indexem na liście przepisów linkowanych do przepisu pod pierwszym argumentem!
-    public static void deleteLinking(int recipe1index, int recipe2index) {
+    //Drugi arg jest indeksem na liście przepisów linkowanych do przepisu pod pierwszym argumentem!
+    public static void deleteLink( int recipe1index, int recipe2index) {
         if (recipesList.size() == 0) System.out.println("Nie ma żadnych przepisów?!");
         ArrayList<String> tmp = new ArrayList<String>();
 
@@ -71,10 +71,10 @@ public class LinkedRecipes {
         recipe1.getLinkedRecipes().remove(recipe2index);
         recipe2.getLinkedRecipes().remove(recipe1.getName());
 
-        saveLinkings();
+        saveLinks();
     }
 
-    public static void saveLinkings() {
+    public static void saveLinks() {
         String out = "data/recipesPL/linked/linkedRecipesPL";
         String content = "";
         String linkRecipe;
@@ -102,7 +102,7 @@ public class LinkedRecipes {
             save.write(content);
             save.close();
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            System.out.println("Linkings file not found");
+            System.out.println("Links file not found");
         }
     }
 }

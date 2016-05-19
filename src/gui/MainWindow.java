@@ -8,11 +8,8 @@ import auxiliary.PairRecipeIndex;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -23,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static gui.LinkedRecipesUI.showLinkedRecipes;
-import static java.awt.event.ActionEvent.*;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -31,7 +27,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
  * Project WhatToCook
  */
 /*
-    GŁÓWNA KLASA PROGRAMU, JEST BEZPOŚRENDIO ODPOWIEDZIALNA ZA TWORZENIE GŁÓWNEGO OKNA INTERFEJSU GRAFICZNEGO,
+    GŁÓWNA KLASA PROGRAMU, JEST BEZPOŚREDNIO ODPOWIEDZIALNA ZA TWORZENIE GŁÓWNEGO OKNA INTERFEJSU GRAFICZNEGO,
     ALE POŚREDNIO JEST RÓWNIEŻ "FASADĄ" DO KOMUNIKACJI MIĘDZY POZOSTAŁYMI KLASAMI W PROGRAMIE
  */
 public class MainWindow extends JFrame {
@@ -101,7 +97,7 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(340, 400));
 
-        mainCardsCount = getTruthsAmmount(cards);
+        mainCardsCount = getTruthsAmount(cards);
         inEdit = null;
         //MENUBAR CREATING/////////////////////////////////////////////////////////////////////////////////////////////
         mainMenu = new JMenuBar();
@@ -265,7 +261,7 @@ public class MainWindow extends JFrame {
 
             }
         };
-        Action clearReceipesAction = new AbstractAction(WhatToCook.SelectedPackage.get(4)) {
+        Action clearRecipesAction = new AbstractAction(WhatToCook.SelectedPackage.get(4)) {
             public void actionPerformed(ActionEvent event) {
                 int i = recipesOutputListModel.getSize() - 1;
                 for (; i >= 0; i--)
@@ -323,7 +319,7 @@ public class MainWindow extends JFrame {
         editMenu.add(importIngredientsAction);
         editMenu.addSeparator();
         editMenu.add(clearIngredientsAction);
-        editMenu.add(clearReceipesAction);
+        editMenu.add(clearRecipesAction);
         helpMenu.add(aboutAction);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //KARTA WYSZUKIWANIA////////////////////////////////////////////////////////////////////////////////////////////
@@ -381,7 +377,7 @@ public class MainWindow extends JFrame {
         ingredientsInputList.setVisibleRowCount(-1);
         ingredientsInputList = new JList<>(ingredientsInputListModel);
         ingredientsInputListScrollPane = new JScrollPane(ingredientsInputList);
-        //WCZYTYWANIE SKLADNIKOW POSIADANYCH NA POCZATKU PROGRAMU
+        //WCZYTYWANIE SKŁADNIKÓW POSIADANYCH NA POCZĄTKU PROGRAMU
         if (MainWindow.autoLoadIngredients) {
             String name;
             try {
@@ -896,7 +892,7 @@ public class MainWindow extends JFrame {
 
     }
 
-    //FUNCKJA OTWIERA NOWĄ KARTĘ Z KONKRETNYM PRZEPISEM
+    //FUNKCJA OTWIERA NOWĄ KARTĘ Z KONKRETNYM PRZEPISEM
     private void showRecipe(Recipe recipeToShow) {
         recipesBorderLayout = new JPanel(new BorderLayout());
         recipeTextArea = new JTextArea();
@@ -1064,7 +1060,7 @@ public class MainWindow extends JFrame {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                     if (!ingredientInCreatingRecipeComboBox.getSelectedItem().equals("")) {
                         String newForm = "● " + ingredientInCreatingRecipeComboBox.getSelectedItem();
-                        newForm += " " + newEditAmmountTextArea.getText() + " " + newEditUnitTextArea.getText();
+                        newForm += " " + newEditAmountTextArea.getText() + " " + newEditUnitTextArea.getText();
                         boolean exist = false;
                         for (int i = 0; i < ingredientsInputInRecipeListModel.getSize(); i++) {
                             if ((newForm.equals(ingredientsInputInRecipeListModel.get(i)))) {
@@ -1074,8 +1070,8 @@ public class MainWindow extends JFrame {
                         }
                         if (!exist) {
                             ingredientsInputInRecipeListModel.addElement(newForm);
-                            ingredientsListInput.add(new ListHandler(ingredientInCreatingRecipeComboBox.getSelectedItem().toString(), newEditAmmountTextArea.getText(), newEditUnitTextArea.getText()));
-                            newEditAmmountTextArea.setText("");
+                            ingredientsListInput.add(new ListHandler(ingredientInCreatingRecipeComboBox.getSelectedItem().toString(), newEditAmountTextArea.getText(), newEditUnitTextArea.getText()));
+                            newEditAmountTextArea.setText("");
                             newEditUnitTextArea.setText("");
                         }
                     }
@@ -1103,22 +1099,22 @@ public class MainWindow extends JFrame {
         newEditMainDownBorderLayout = new JPanel(new BorderLayout());
         newEditMainUpBorderLayout = new JPanel(new BorderLayout());
         newEditTopGridLayout = new JPanel(new GridLayout(1, 2));
-        newEditAmmountAndUnitGridLayoutUp = new JPanel(new GridLayout(1, 2));
-        newEditAmmountAndUnitGridLayoutDown = new JPanel(new GridLayout(1, 2));
+        newEditAmountAndUnitGridLayoutUp = new JPanel(new GridLayout(1, 2));
+        newEditAmountAndUnitGridLayoutDown = new JPanel(new GridLayout(1, 2));
 
-        newEditAmmountTextArea = new JTextField();
+        newEditAmountTextArea = new JTextField();
         newEditUnitTextArea = new JTextField();
-        newEditAmmountTextArea.addKeyListener(addIngredientKeyListener);
+        newEditAmountTextArea.addKeyListener(addIngredientKeyListener);
         newEditUnitTextArea.addKeyListener(addIngredientKeyListener);
 
-        newEditAmmountAndUnitGridLayoutUp.add(new JLabel(WhatToCook.SelectedPackage.get(48)));
-        newEditAmmountAndUnitGridLayoutUp.add(newEditAmmountTextArea);
+        newEditAmountAndUnitGridLayoutUp.add(new JLabel(WhatToCook.SelectedPackage.get(48)));
+        newEditAmountAndUnitGridLayoutUp.add( newEditAmountTextArea );
 
-        newEditAmmountAndUnitGridLayoutDown.add(new JLabel(WhatToCook.SelectedPackage.get(49)));
-        newEditAmmountAndUnitGridLayoutDown.add(newEditUnitTextArea);
+        newEditAmountAndUnitGridLayoutDown.add(new JLabel(WhatToCook.SelectedPackage.get(49)));
+        newEditAmountAndUnitGridLayoutDown.add(newEditUnitTextArea);
 
-        newEditAmmountAndUnitGridLayoutUp.setBorder(new EmptyBorder(2, 2, 2, 2));
-        newEditAmmountAndUnitGridLayoutDown.setBorder(new EmptyBorder(2, 2, 2, 2));
+        newEditAmountAndUnitGridLayoutUp.setBorder(new EmptyBorder(2, 2, 2, 2));
+        newEditAmountAndUnitGridLayoutDown.setBorder(new EmptyBorder(2, 2, 2, 2));
 
         newEditParametersGrid.add(new JLabel(WhatToCook.SelectedPackage.get(50), SwingConstants.CENTER));
 
@@ -1163,11 +1159,11 @@ public class MainWindow extends JFrame {
             String name1 = recipeNameTextField.getText();
             String instructions = instructionsInsertTextArea.getText();
             ArrayList<Ingredient> ingredients = new ArrayList<>();
-            ArrayList<PairAmountUnit> ammountsAndUnits = new ArrayList<>();
+            ArrayList<PairAmountUnit> amountsAndUnits = new ArrayList<>();
             for (ListHandler handler : ingredientsListInput) {
                 Ingredient ingredient;
                 ingredient = new Ingredient(handler.getIngredient());
-                ammountsAndUnits.add(new PairAmountUnit(handler.getAmmount(), handler.getUnit()));
+                amountsAndUnits.add(new PairAmountUnit(handler.getAmount(), handler.getUnit()));
                 ingredients.add(ingredient);
             }
             boolean parameters[] = new boolean[5];
@@ -1176,7 +1172,7 @@ public class MainWindow extends JFrame {
             parameters[2] = NewEditdinerCheckBox.isSelected();
             parameters[3] = NewEditsupperCheckBox.isSelected();
             parameters[4] = NewEditsnackCheckBox.isSelected();
-            Recipe newRecipe1 = new Recipe(name1, ingredients, ammountsAndUnits, instructions, new RecipeParameters(parameters, NewEditEaseToPrepare.getSelectedIndex(), NewEditPreparingTimeComboBox.getSelectedIndex()));
+            Recipe newRecipe1 = new Recipe(name1, ingredients, amountsAndUnits, instructions, new RecipeParameters(parameters, NewEditEaseToPrepare.getSelectedIndex(), NewEditPreparingTimeComboBox.getSelectedIndex()));
             if (recipe == null) {
                 if ((!name1.equals("")) && (!instructions.equals("")) && (!ingredients.isEmpty()) && (!RecipesList.isRecipe(newRecipe1))) {
                     RecipesList.add(newRecipe1);
@@ -1205,7 +1201,7 @@ public class MainWindow extends JFrame {
         newEditAddIngredientButton.addActionListener(event -> {
             if (!ingredientInCreatingRecipeComboBox.getSelectedItem().equals("")) {
                 String newForm = "● " + ingredientInCreatingRecipeComboBox.getSelectedItem();
-                newForm += " " + newEditAmmountTextArea.getText() + " " + newEditUnitTextArea.getText();
+                newForm += " " + newEditAmountTextArea.getText() + " " + newEditUnitTextArea.getText();
                 boolean exist = false;
                 for (int i = 0; i < ingredientsInputInRecipeListModel.getSize(); i++) {
                     if ((newForm.equals(ingredientsInputInRecipeListModel.get(i)))) {
@@ -1215,8 +1211,8 @@ public class MainWindow extends JFrame {
                 }
                 if (!exist) {
                     ingredientsInputInRecipeListModel.addElement(newForm);
-                    ingredientsListInput.add(new ListHandler(ingredientInCreatingRecipeComboBox.getSelectedItem().toString(), newEditAmmountTextArea.getText(), newEditUnitTextArea.getText()));
-                    newEditAmmountTextArea.setText("");
+                    ingredientsListInput.add(new ListHandler(ingredientInCreatingRecipeComboBox.getSelectedItem().toString(), newEditAmountTextArea.getText(), newEditUnitTextArea.getText()));
+                    newEditAmountTextArea.setText("");
                     newEditUnitTextArea.setText("");
                 }
             }
@@ -1278,8 +1274,8 @@ public class MainWindow extends JFrame {
         newEditUpRightGridLayout.add(ingredientsInputinRecipeListScrollPane);
         newEditUpRightGridLayout.add(new JLabel(WhatToCook.SelectedPackage.get(11), SwingConstants.CENTER));
         newEditUpRightGridLayout.add(ingredientInCreatingRecipeComboBox);
-        newEditUpRightGridLayout.add(newEditAmmountAndUnitGridLayoutUp);
-        newEditUpRightGridLayout.add(newEditAmmountAndUnitGridLayoutDown);
+        newEditUpRightGridLayout.add( newEditAmountAndUnitGridLayoutUp );
+        newEditUpRightGridLayout.add( newEditAmountAndUnitGridLayoutDown );
         newEditUpRightGridLayout.add(newEditAddIngredientButton);
         newEditUpRightGridLayout.add(newEditRemoveIngredientButton);
 
@@ -1507,7 +1503,7 @@ public class MainWindow extends JFrame {
         return showIngredientsMenu.isSelected();
     }
 
-    private int getTruthsAmmount(boolean[] toCount) {
+    private int getTruthsAmount( boolean[] toCount) {
         int counter = 0;
         for (boolean b : toCount) {
             if (b)
@@ -1583,8 +1579,8 @@ public class MainWindow extends JFrame {
     private JPanel newEditMainDownBorderLayout;
     private JPanel newEditMainUpBorderLayout;
     private JPanel newEditTopGridLayout;
-    private JPanel newEditAmmountAndUnitGridLayoutUp;
-    private JPanel newEditAmmountAndUnitGridLayoutDown;
+    private JPanel newEditAmountAndUnitGridLayoutUp;
+    private JPanel newEditAmountAndUnitGridLayoutDown;
     private JPanel newEditParametersGrid;
     private JPanel manageRecipesMainPanel;
     private JPanel manageRecipesGridPanel;
@@ -1607,7 +1603,7 @@ public class MainWindow extends JFrame {
     private JTextArea instructionsInsertTextArea;
 
     private JTextField newIngredientTextField;
-    private JTextField newEditAmmountTextArea;
+    private JTextField newEditAmountTextArea;
     private JTextField newEditUnitTextArea;
     private JTextField recipeNameTextField;
     private JTextField searchForRecipesTextArea;

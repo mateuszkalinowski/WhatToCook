@@ -10,9 +10,9 @@ package auxiliary;
  */
 public class ListHandler {
 
-    public ListHandler(String ingredient, String ammount, String unit) {
+    public ListHandler( String ingredient, String amount, String unit) {
         this.ingredient = ingredient;
-        this.ammount = ammount;
+        this.amount = amount;
         this.unit = unit;
     }
 
@@ -20,8 +20,8 @@ public class ListHandler {
         return ingredient;
     }
 
-    public String getAmmount() {
-        return ammount;
+    public String getAmount() {
+        return amount;
     }
 
     public String getUnit() {
@@ -29,6 +29,6 @@ public class ListHandler {
     }
 
     String ingredient;
-    String ammount;
+    String amount;
     String unit;
 }

@@ -5,13 +5,13 @@ package auxiliary;
  * Project WhatToCook
  */
 /*
-    UŻYWAN DO PRZECHOWYWANIA ILOŚCI I JEDNOSTKI SŁADNIKÓW W PRZEPISACH
+    UŻYWANA DO PRZECHOWYWANIA ILOŚCI I JEDNOSTKI SKŁADNIKÓW W PRZEPISACH
     Łączy się z Recipe
  */
 public class PairAmountUnit {
-    public PairAmountUnit(String ammount,String unit)
+    public PairAmountUnit(String amount,String unit)
     {
-       this.amount = ammount;
+       this.amount = amount;
         this.unit = unit;
     }
     public String getAmount()

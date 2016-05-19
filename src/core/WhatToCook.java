@@ -45,7 +45,7 @@ public class WhatToCook {
             }
             for (int i = 0; i < languagesNames.size(); i++) {
                 ArrayList<String> languageData = new ArrayList<>();
-                languageDataFile = new Scanner(new File("data/Languages/Recourses/" + languagesNames.get(i)));
+                languageDataFile = new Scanner(new File("data/Languages/Resources/" + languagesNames.get(i)));
                 int counter = 0;
                 final File[] listOfFiles = new File(languagesPaths.get(i)[1]).listFiles();
                 if (listOfFiles == null)
@@ -67,7 +67,7 @@ public class WhatToCook {
             System.out.println("Language files not found");
         }
         if (LanguagesPackages.size() == 0) {
-            JOptionPane.showMessageDialog(null,"It was impossbile to load any language.","Languages loading error - Critical", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"It was impossible to load any language.","Languages loading error - Critical", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
 
@@ -131,7 +131,7 @@ public class WhatToCook {
         frame.setVisible(true);
 
     }
-    //TODO ZMIANA PRZY KAZDYM DODANIU SLOWA
+    //TODO ZMIANA PRZY KAŻDYM DODANIU SŁOWA
     private static final int phrasesCount = 116;
 
     private static boolean cards[];

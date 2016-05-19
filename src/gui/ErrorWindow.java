@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * Project WhatToCook
  */
 /*
-    UNIWERSALNE OKNO DO WYSWIETLANIA KOMUNIKATÓW
-    METODA "REFRESH" OTRZYMUJE LISTE ELEMENTOW DO WYSWIETLENIA, WIADOMOŚĆ I TYTUŁ OKNA
-    OKNO USTALA SWOJĄ WYSOKOŚĆ NA PODSTAWIE ILOŚĆI ELEMENTÓW DO WYŚWIETLENIA
+    UNIWERSALNE OKNO DO WYŚWIETLANIA KOMUNIKATÓW
+    METODA "REFRESH" OTRZYMUJE LISTĘ ELEMENTÓW DO WYŚWIETLENIA, WIADOMOŚĆ I TYTUŁ OKNA
+    OKNO USTALA SWOJĄ WYSOKOŚĆ NA PODSTAWIE ILOŚCI ELEMENTÓW DO WYŚWIETLENIA
  */
 class ErrorWindow extends JDialog {
     ErrorWindow()
@@ -39,7 +39,7 @@ class ErrorWindow extends JDialog {
         {
             ErrorMessage+="<br>" + toPrint;
         }
-        ErrorMessage+="</hmlt>";
+        ErrorMessage+="</html>";
         ErrorMessageLabel.setText(ErrorMessage);
         repaint();
         pack();

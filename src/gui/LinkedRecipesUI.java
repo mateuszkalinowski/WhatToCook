@@ -1,25 +1,17 @@
 package gui;
 
-import core.RecipesList;
-import core.LinkedRecipes;
-
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.text.StyleContext;
 import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 
-import static core.LinkedRecipes.addLinking;
-import static core.LinkedRecipes.deleteLinking;
+import static core.LinkedRecipes.addLink;
+import static core.LinkedRecipes.deleteLink;
 import static core.RecipesList.recipesList;
 import static gui.MainWindow.markedRecipe;
-import static javax.swing.SwingConstants.NORTH;
 
 /**
  * Created by WTC-Team on 2016-05-17.
@@ -75,7 +67,7 @@ public class LinkedRecipesUI {
 
         addLinkingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addLinking(markedRecipe, allRecipes.getSelectedIndex());
+                addLink(markedRecipe, allRecipes.getSelectedIndex());
                 showLinkedRecipes();
             }
         });
@@ -85,7 +77,7 @@ public class LinkedRecipesUI {
         delLinkingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ButtonModel button = linkedRecipesButtonGroup.getSelection();
-                deleteLinking(markedRecipe, button.getMnemonic());
+                deleteLink(markedRecipe, button.getMnemonic());
                 showLinkedRecipes();
             }
         });

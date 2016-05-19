@@ -38,10 +38,10 @@ public class Recipe implements Comparable<Recipe>
     public RecipeParameters getParameters() {return parameters;}
     public int getSize(){return ingredients.size();}
     public ArrayList<String> getLinkedRecipes() {
-        return LinkedRecipes;
+        return linkedRecipes;
     }
     public void setLinkedRecipes(ArrayList<String> linkedRecipes) {
-        LinkedRecipes = linkedRecipes;
+        this.linkedRecipes = linkedRecipes;
     }
 
     private String name;
@@ -49,7 +49,7 @@ public class Recipe implements Comparable<Recipe>
     private ArrayList<PairAmountUnit> ingredientsAmountAndUnits;
     private String instructions;
     private RecipeParameters parameters;
-    private ArrayList<String> LinkedRecipes = new ArrayList<>();
+    private ArrayList<String> linkedRecipes = new ArrayList<>();
 
     @Override
     public int compareTo(Recipe o) {

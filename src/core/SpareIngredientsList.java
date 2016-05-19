@@ -2,8 +2,6 @@ package core;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedSet;
 
 /**
  * Created by WTC-Team on 14.05.2016.
@@ -18,13 +16,13 @@ import java.util.SortedSet;
 public class SpareIngredientsList {
 
     public static void initialize() {
-        spareIngredientslist=new ArrayList<>();
+        spareIngredientsList =new ArrayList<>();
     }
 
 
     public static SpareIngredients get(Ingredient ingredient)
     {
-        for(SpareIngredients i : spareIngredientslist)
+        for(SpareIngredients i : spareIngredientsList )
         {
             if(i.getName().equals(ingredient.getName()))
                 return i;
@@ -32,7 +30,7 @@ public class SpareIngredientsList {
         return null;
     }
     public static void add(Ingredient ingredient) {
-        spareIngredientslist.add(new SpareIngredients(ingredient));
+        spareIngredientsList.add(new SpareIngredients(ingredient));
     }
 
     public static void rebuildListModel(DefaultListModel<String> model,Ingredient ingredient) {
@@ -57,7 +55,7 @@ public class SpareIngredientsList {
      */
     private static SpareIngredients getElementByIngredient(Ingredient ingredient)
     {
-        for(SpareIngredients s : spareIngredientslist)
+        for(SpareIngredients s : spareIngredientsList )
         {
             if(s.getName().equals(ingredient.getName()))
                 return s;
@@ -94,7 +92,7 @@ public class SpareIngredientsList {
             return result.substring(0,result.length()-1);
         return result;
     }
-    /*  Najważniejsza funckja do wyszukiwania, sprawdza czy dany składnik "main" może być zastopiąny przez składnik
+    /*  Najważniejsza funkcja do wyszukiwania, sprawdza czy dany składnik "main" może być zastąpiony przez składnik
         "spare"
     */
     public static boolean containSpareIngredient(Ingredient spare,Ingredient main) {
@@ -106,18 +104,18 @@ public class SpareIngredientsList {
         return false;
     }
     public static void removeElement(Ingredient main) {
-        for(SpareIngredients s : spareIngredientslist){
+        for(SpareIngredients s : spareIngredientsList ){
             if(s.getName().equals(main.getName()))
             {
-                spareIngredientslist.remove(s);
+                spareIngredientsList.remove(s);
                 break;
             }
         }
     }
     public static void removeSpareIngredientFromEverywhere(Ingredient spare) {
-        for(SpareIngredients s : spareIngredientslist) {
+        for(SpareIngredients s : spareIngredientsList ) {
             s.getSpareIngredients().remove(spare);
         }
     }
-    public static ArrayList<SpareIngredients> spareIngredientslist;
+    public static ArrayList<SpareIngredients> spareIngredientsList;
 }
