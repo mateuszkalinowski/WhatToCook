@@ -126,4 +126,14 @@ public class TestingClass {
         assertEquals("",auxiliary.Dictionary.translate("",""));
         assertEquals("",auxiliary.Dictionary.translate("","Polski"));
     }
+	  @Test
+    public void testEqualsIngredients() {
+        String name;
+
+        Ingredient ingredient = new Ingredient("jabłko");
+        Ingredient ingredient2 = new Ingredient("jabłko2");
+        int result = ingredient.compareTo(ingredient2);
+        assertTrue(!ingredient.equals(ingredient2))
+
+    }
 }
