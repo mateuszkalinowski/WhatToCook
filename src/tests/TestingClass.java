@@ -179,7 +179,7 @@ public class TestingClass {
 
         //Usunięcie testowych przepisów z bazy przepisów
         RecipesList.remove(recipe1.getName());
-        RecipesList.remove(recipe1.getName());
+        RecipesList.remove(recipe2.getName());
     }
 
     @Test
